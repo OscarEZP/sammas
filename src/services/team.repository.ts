@@ -1,25 +1,28 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { TeamRequest } from 'src/controllers/team/team.controller';
 import { Teams } from 'src/entities/team.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class TeamRepository {
+export class TeamService {
   constructor(
     @Inject('TEAMS_REPOSITORY')
     private teamsRepository: Repository<Teams>,
   ) {}
 
-  async create(data: TeamRequest) {
+  async create(data) {
     const createTeamsObject = this.teamsRepository.create(data);
     return await this.teamsRepository.save(createTeamsObject);
   }
 
   async getAll() {
-    return await this.teamsRepository.find();
+    return await this.teamsRepository.find({
+      relations: ['group', 'paths'],
+    });
   }
 
-  async getById(id: number) {
-    return await this.teamsRepository.findOne(id);
+  async getById(id: string) {
+    return await this.teamsRepository.findOne(id, {
+      relations: ['group', 'paths'],
+    });
   }
 }

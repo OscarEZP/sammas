@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { TeamRequest } from 'src/controllers/team/team.controller';
 import { Paths } from 'src/entities/paths.entity';
 import { Repository } from 'typeorm';
 
@@ -10,7 +9,7 @@ export class PathsRepository {
     private pathsRepository: Repository<Paths>,
   ) {}
 
-  async create(data: TeamRequest) {
+  async create(data: any) {
     const createTeamsObject = this.pathsRepository.create(data);
     return await this.pathsRepository.save(createTeamsObject);
   }
