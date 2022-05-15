@@ -39,6 +39,7 @@
     "class-validator": "^0.13.1",
     "crypto-ts": "^1.0.2",
     "date-fns": "^2.23.0",
+    "dotenv": "^16.0.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",

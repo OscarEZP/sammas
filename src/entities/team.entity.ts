@@ -9,6 +9,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Groups } from './groups.entity';
+import { Notices } from './notices.entity';
 import { Paths } from './paths.entity';
 
 @Entity('teams')
@@ -43,6 +44,9 @@ export class Teams {
   @Column('boolean')
   openForLiveBetting: boolean;
 
+  @Column('varchar')
+  fileUrl: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -56,4 +60,8 @@ export class Teams {
   @OneToMany(() => Paths, (path) => path.teams)
   @JoinColumn()
   paths: Paths[];
+
+  @OneToMany(() => Notices, (notice) => notice.team)
+  @JoinColumn()
+  notices: Notices[];
 }

@@ -16,13 +16,13 @@ export class TeamService {
 
   async getAll() {
     return await this.teamsRepository.find({
-      relations: ['group', 'paths'],
+      relations: ['group', 'paths', 'notices'],
     });
   }
 
   async getById(id: string) {
     return await this.teamsRepository.findOne(id, {
-      relations: ['group', 'paths'],
+      relations: ['group', 'paths', 'notices'],
     });
   }
 }

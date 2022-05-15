@@ -5,7 +5,7 @@ export const databaseProviders = [
     useFactory: async () =>
       await createConnection({
         type: 'mysql',
-        host: process.env.TYPEORM_HOST,
+        host: process.env.TYPEORM_CLOUDSQL,
         port: 3306,
         username: process.env.TYPEORM_USERNAME,
         password: process.env.TYPEORM_PASSWORD,
@@ -13,6 +13,7 @@ export const databaseProviders = [
         entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize: true,
         logging: true,
+        extra: { socketPath: process.env.TYPEORM_CLOUDSQL },
       }),
   },
 ];
